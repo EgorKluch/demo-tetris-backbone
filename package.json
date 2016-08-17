@@ -1,14 +1,13 @@
 {
-  "name": "Tetris. Backbone demo",
+  "name": "demo-tetris-backbone",
   "version": "0.0.1",
   "main": "build/index.js",
   "author": "EgorKLuch",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ashleygwilliams/my_package.git"
+    "url": "https://github.com/EgorKluch/demo-tetris-backbone.git"
   },
-  "bugs": {
-    "url": "https://github.com/ashleygwilliams/my_package/issues"
-  },
-  "homepage": "https://github.com/ashleygwilliams/my_package"
+  "dependencies": {
+    "copy-webpack-plugin": "3.*"
+  }
 }
