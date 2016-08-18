@@ -1,14 +1,29 @@
 var $ = require('jquery');
 var Marionette = require('backbone.marionette');
+var Backbone = require('backbone');
+
+var MenuLayout = require('./View/Layout/MenuLayout');
+
+var Application = Marionette.Application.extend({
+  initialize: function () {
+    var app = this;
+    this.on('start', function() {
+      app.addRegions({
+        app: "#app"
+      });
+
+      var menuLayout = new MenuLayout({
+        model: new Backbone.Model({
+          name: 'John'
+        })
+      });
+      app.getRegion('app').show(menuLayout);
+    });
+  }
+});
+
+window.app = new Application();
 
 $(document).ready(function () {
-  var app = new Marionette.Application();
-
-  app.on('start', function() {
-    app.addRegions({
-      app: "#app"
-    });
-  });
-
   app.start();
 });
