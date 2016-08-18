@@ -17,7 +17,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('css/[name].css'),
     new HtmlWebpackPlugin({
-      template: '!!handlebars!src/tpl/index.hbs'
+      template: '!!handlebars!src/app/tpl/index.hbs'
     })
   ]
 };
