@@ -1,3 +1,5 @@
+require('../css/main.css');
+
 var $ = require('jquery');
 var Marionette = require('backbone.marionette');
 var Backbone = require('backbone');

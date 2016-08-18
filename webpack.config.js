@@ -1,4 +1,5 @@
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: "./src/js/app.js",
@@ -6,12 +7,17 @@ module.exports = {
     path: __dirname + '/build',
     filename: "js/app.js"
   },
-  plugins: [
-    new CopyWebpackPlugin([{
-      from: 'src/index.html', to: 'index.html'
-    }])
-  ],
   module: {
-    loaders: []
-  }
+    loaders: [{
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+    }]
+  },
+
+  plugins: [
+    new ExtractTextPlugin('css/[name].css'),
+    new HtmlWebpackPlugin({
+      template: '!!handlebars!src/index.hbs'
+    })
+  ]
 };
