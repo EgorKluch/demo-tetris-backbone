@@ -4,11 +4,12 @@ var $ = require('jquery');
 var Marionette = require('backbone.marionette');
 var Backbone = require('backbone');
 
-var MenuLayout = require('../View/TetrisLayout/TetrisLayout');
+var MenuLayout = require('../Layout/TetrisLayout/TetrisLayout');
 
 var Application = Marionette.Application.extend({
   initialize: function () {
     var app = this;
+
     this.on('start', function() {
       app.addRegions({
         app: "#app"

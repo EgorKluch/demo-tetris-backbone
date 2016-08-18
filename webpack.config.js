@@ -11,6 +11,9 @@ module.exports = {
     loaders: [{
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+    }, {
+      test: /\.hbs$/,
+      loader: "handlebars-loader"
     }]
   },
 
