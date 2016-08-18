@@ -1,3 +1,5 @@
+require('./css/TetrisLayout.css');
+
 var Marionette = require('backbone.marionette');
 
 var MenuLayout = Marionette.LayoutView.extend({

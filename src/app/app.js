@@ -1,10 +1,10 @@
-require('../css/main.css');
+require('./css/reset.css');
 
 var $ = require('jquery');
 var Marionette = require('backbone.marionette');
 var Backbone = require('backbone');
 
-var MenuLayout = require('./View/Layout/MenuLayout');
+var MenuLayout = require('../View/TetrisLayout/TetrisLayout');
 
 var Application = Marionette.Application.extend({
   initialize: function () {
