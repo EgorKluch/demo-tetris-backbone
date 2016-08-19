@@ -11,6 +11,7 @@ var TetrisGameModel = require('../Tetris/Model/GameModel');
 var Application = Marionette.Application.extend({
   initialize: function () {
     var app = this;
+    app.$document = $(document);
 
     this.on('start', function() {
       app.addRegions({
