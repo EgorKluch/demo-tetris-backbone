@@ -1,10 +1,12 @@
+'use strict';
+
 require('./css/reset.css');
 
 var $ = require('jquery');
 var Marionette = require('backbone.marionette');
-var Backbone = require('backbone');
 
-var MenuLayout = require('../Layout/TetrisLayout/TetrisLayout');
+var TetrisLayout = require('../Tetris/Layout/TetrisLayout/TetrisLayout');
+var TetrisGameModel = require('../Tetris/Model/GameModel');
 
 var Application = Marionette.Application.extend({
   initialize: function () {
@@ -15,12 +17,10 @@ var Application = Marionette.Application.extend({
         app: "#app"
       });
 
-      var menuLayout = new MenuLayout({
-        model: new Backbone.Model({
-          name: 'John'
-        })
+      var tetrisLayout = new TetrisLayout({
+        model: new TetrisGameModel()
       });
-      app.getRegion('app').show(menuLayout);
+      app.getRegion('app').show(tetrisLayout);
     });
   }
 });
