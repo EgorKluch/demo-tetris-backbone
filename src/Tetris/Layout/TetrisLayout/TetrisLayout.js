@@ -15,21 +15,26 @@ var TetrisLayout = Marionette.LayoutView.extend({
     content: '.tetrisContent'
   },
 
-  onRender: function () {
-    this.showContent();
+  initialize: function () {
+    this.model.on('change:screen', this._showScreen.bind(this));
   },
 
-  showContent: function () {
-    var Layout = this._getLayoutClass();
+  onRender: function () {
+    this._showScreen();
+  },
+
+  _showScreen: function () {
+    var Layout = this._getScreenLayout();
     var layout = new Layout({
       model: this.model
     });
     this.getRegion('content').show(layout);
   },
 
-  _getLayoutClass: function () {
-    var state = this.model.get('state');
-    if (state == 'menu') return MenuLayout;
+  _getScreenLayout: function () {
+    var screen = this.model.get('screen');
+    if (screen == 'menu') return MenuLayout;
+    return Marionette.ItemView;
   }
 });
 

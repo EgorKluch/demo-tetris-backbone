@@ -31,6 +31,9 @@ var MenuLayout = Marionette.LayoutView.extend({
   _showMenu: function () {
     var menuView = new MenuView();
     this.getRegion('menu').show(menuView);
+    menuView.on('action', function (options) {
+      this.model.set('screen', options.id);
+    }.bind(this));
   }
 });
 

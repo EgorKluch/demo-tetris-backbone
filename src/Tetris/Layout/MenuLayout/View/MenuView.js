@@ -30,18 +30,27 @@ var MenuView = Marionette.CollectionView.extend({
     this._initKeyDownHandler();
   },
 
-  up: function () {
+  moveUp: function () {
     if (!this.activeItemIndex) return;
     this.collection.at(this.activeItemIndex).set('active', false);
     this.activeItemIndex--;
     this.collection.at(this.activeItemIndex).set('active', true);
   },
 
-  down: function () {
+  moveDown: function () {
     if (this.activeItemIndex) return;
     this.collection.at(this.activeItemIndex).set('active', false);
     this.activeItemIndex++;
     this.collection.at(this.activeItemIndex).set('active', true);
+  },
+
+  doAction: function () {
+    var menuItem = this.collection.find(function (menuItem) {
+      return menuItem.get('active');
+    });
+    this.trigger('action', {
+      id: menuItem.get('id')
+    });
   },
 
   destroy: function () {
@@ -53,10 +62,13 @@ var MenuView = Marionette.CollectionView.extend({
       var pressedKeys = _.uniq(keycomb(e)).join('+');
       switch (pressedKeys) {
         case 'up':
-          this.up();
+          this.moveUp();
           break;
         case 'down':
-          this.down();
+          this.moveDown();
+          break;
+        case 'enter':
+          this.doAction();
           break;
       }
     }.bind(this));
