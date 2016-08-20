@@ -4,7 +4,7 @@ require('../css/CheckboxItem.css');
 
 var MenuItemView = require('./MenuItemView');
 
-var checkboxItemTemplate = require('../tpl/CheckboxItem.hbs');
+var checkboxItemTemplate = require('../tpl/CheckboxItem.twig');
 
 var CheckboxItemView = MenuItemView.extend({
   name: 'CheckboxItemView',

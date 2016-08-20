@@ -2,7 +2,7 @@ require('../css/HighScoreView.css');
 
 var Marionette = require('backbone.marionette');
 
-var HighScoreViewTemplate = require('../tpl/HighScoreView.hbs');
+var HighScoreViewTemplate = require('../tpl/HighScoreView.twig');
 
 var HighScoreView = Marionette.ItemView.extend({
   name: 'HighScoreView',

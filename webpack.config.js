@@ -12,8 +12,8 @@ module.exports = {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
     }, {
-      test: /\.hbs$/,
-      loader: "handlebars-loader"
+      test: /\.twig$/,
+      loader: "twig-loader"
     }]
   },
 

@@ -4,7 +4,7 @@ var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var keycomb = require('keycomb');
 
-var menuItemTemplate = require('../tpl/MenuItem.hbs');
+var menuItemTemplate = require('../tpl/MenuItem.twig');
 
 var MenuItemView = Marionette.ItemView.extend({
   name: 'MenuItemView',

@@ -1,0 +1,10 @@
+{% extends "./MenuItem.twig" %}
+
+{% block content %}
+  <div class="tetris-menuItem-checkbox">
+    {% if enabled %}
+      <div class="tetris-menuItem-activeCheckbox"></div>
+    {% endif %}
+  </div>
+  {{ label }}
+{% endblock %}

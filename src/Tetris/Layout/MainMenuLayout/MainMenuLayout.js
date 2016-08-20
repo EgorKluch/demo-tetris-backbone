@@ -5,7 +5,7 @@ var Marionette = require('backbone.marionette');
 var HighScoreView = require('./View/HighScoreView');
 var MenuView = require('./View/MainMenuView');
 
-var tetrisMenuTemplate = require('./tpl/MenuLayout.hbs');
+var tetrisMenuTemplate = require('./tpl/MenuLayout.twig');
 
 
 var MainMenuLayout = Marionette.LayoutView.extend({

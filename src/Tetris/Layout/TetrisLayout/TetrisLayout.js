@@ -7,7 +7,7 @@ var Marionette = require('backbone.marionette');
 var MainMenuLayout = require('../MainMenuLayout/MainMenuLayout');
 var SettingsLayout = require('../SettingsLayout/SettingsLayout');
 
-var tetrisLayoutTemplate = require('./tpl/TetrisLayout.hbs');
+var tetrisLayoutTemplate = require('./tpl/TetrisLayout.twig');
 
 var TetrisLayout = Marionette.LayoutView.extend({
   name: 'TetrisLayout',
