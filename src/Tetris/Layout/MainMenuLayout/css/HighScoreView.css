@@ -1,0 +1,14 @@
+.tetrisMenu-highScore {
+  margin: 50px 0;
+}
+
+.tetris-highScoreLabel {
+  text-align: center;
+  font-size: 35px;
+}
+
+.tetris-highScoreValue {
+  margin-top: 0;
+  text-align: center;
+  font-size: 35px;
+}

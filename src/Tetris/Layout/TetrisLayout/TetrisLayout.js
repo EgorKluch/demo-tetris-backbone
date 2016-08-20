@@ -4,11 +4,14 @@ require('./css/TetrisLayout.css');
 
 var Marionette = require('backbone.marionette');
 
-var MenuLayout = require('../MenuLayout/MenuLayout');
+var MainMenuLayout = require('../MainMenuLayout/MainMenuLayout');
+var SettingsLayout = require('../SettingsLayout/SettingsLayout');
 
 var tetrisLayoutTemplate = require('./tpl/TetrisLayout.hbs');
 
 var TetrisLayout = Marionette.LayoutView.extend({
+  name: 'TetrisLayout',
+
   template: tetrisLayoutTemplate,
 
   regions: {
@@ -16,24 +19,25 @@ var TetrisLayout = Marionette.LayoutView.extend({
   },
 
   initialize: function () {
-    this.model.on('change:screen', this._showScreen.bind(this));
+    this.model.on('change:screen', this.showScreen.bind(this));
   },
 
   onRender: function () {
-    this._showScreen();
+    this.showScreen();
   },
 
-  _showScreen: function () {
-    var Layout = this._getScreenLayout();
+  showScreen: function () {
+    var Layout = this.getScreenLayout();
     var layout = new Layout({
       model: this.model
     });
     this.getRegion('content').show(layout);
   },
 
-  _getScreenLayout: function () {
+  getScreenLayout: function () {
     var screen = this.model.get('screen');
-    if (screen == 'menu') return MenuLayout;
+    if (screen == 'menu') return MainMenuLayout;
+    if (screen == 'settings') return SettingsLayout;
     return Marionette.ItemView;
   }
 });

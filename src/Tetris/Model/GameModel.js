@@ -3,6 +3,8 @@
 var Backbone = require('backbone');
 
 var GameModel = Backbone.Model.extend({
+  name: 'GameModel',
+
   defaults: {
     screen: 'menu',
     highScore: window.localStorage.getItem('tetris.highScore') || 0

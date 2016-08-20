@@ -3,17 +3,27 @@
 var Marionette = require('backbone.marionette');
 
 var HighScoreView = require('./View/HighScoreView');
-var MenuView = require('./View/MenuView');
+var MenuView = require('./View/MainMenuView');
 
 var tetrisMenuTemplate = require('./tpl/MenuLayout.hbs');
 
 
-var MenuLayout = Marionette.LayoutView.extend({
+var MainMenuLayout = Marionette.LayoutView.extend({
+  name: 'MainMenuLayout',
+
   template: tetrisMenuTemplate,
 
   regions: {
     highScore: '.tetrisMenu-highScore',
     menu: '.tetrisMenu-menu'
+  },
+
+  initialize: function () {
+    this.addScreenClass();
+  },
+
+  addScreenClass: function () {
+    this.$el.addClass('tetrisScreen-menu');
   },
 
   onRender: function () {
@@ -29,12 +39,11 @@ var MenuLayout = Marionette.LayoutView.extend({
   },
 
   _showMenu: function () {
-    var menuView = new MenuView();
+    var menuView = new MenuView({
+      model: this.model
+    });
     this.getRegion('menu').show(menuView);
-    menuView.on('action', function (options) {
-      this.model.set('screen', options.id);
-    }.bind(this));
   }
 });
 
-module.exports = MenuLayout;
+module.exports = MainMenuLayout;
