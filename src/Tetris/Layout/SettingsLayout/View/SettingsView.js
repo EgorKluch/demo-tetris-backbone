@@ -17,7 +17,16 @@ var SettingsView = MainMenuView.extend({
     }, {
       id: 'menu',
       label: 'MAIN MENU'
-    }])
+    }]);
+  },
+
+  initActionEvents: function () {
+    MainMenuView.prototype.initActionEvents.apply(this, arguments);
+
+    this.on('menuItem:change:enabled', function (menuItemView, { id }) {
+      var enabled = menuItemView.model.get('enabled');
+      this.model.set(id, enabled);
+    }.bind(this));
   }
 });
 

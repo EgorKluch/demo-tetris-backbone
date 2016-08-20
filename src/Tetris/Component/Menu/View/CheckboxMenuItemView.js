@@ -13,6 +13,9 @@ var CheckboxItemView = MenuItemView.extend({
 
   doAction: function () {
     this.model.set('enabled', !this.model.get('enabled'));
+    this.trigger('change:enabled', {
+      id: this.model.get('id')
+    });
     this.render();
   }
 });

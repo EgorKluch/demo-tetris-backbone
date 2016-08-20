@@ -7,12 +7,16 @@ var GameModel = Backbone.Model.extend({
 
   defaults: {
     screen: 'menu',
-    highScore: window.localStorage.getItem('tetris.highScore') || 0
+    highScore: parseInt(window.localStorage.getItem('tetris.highScore')) || 0,
+    useSpecials: window.localStorage.getItem('tetris.useSpecials') === 'true'
   },
 
   initialize: function () {
     this.on('change:highScore', function (model, highScore) {
       window.localStorage.setItem('tetris.highScore', highScore);
+    });
+    this.on('change:useSpecials', function (model, useSpecials) {
+      window.localStorage.setItem('tetris.useSpecials', useSpecials);
     });
   }
 });
