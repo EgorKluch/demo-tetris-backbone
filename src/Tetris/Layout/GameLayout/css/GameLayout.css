@@ -1,0 +1,5 @@
+.tetris-gameArea {
+  width: 201px;
+  height: 401px;
+  border-right: 1px solid black;
+}

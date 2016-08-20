@@ -8,7 +8,7 @@ var MainMenuView = MenuView.extend({
 
   initMenuItems: function () {
     this.collection = new MenuItemCollection([{
-      id: 'play',
+      id: 'game',
       label: 'PLAY'
     }, {
       id: 'settings',

@@ -12,8 +12,7 @@ var MenuItemCollection = require('./Collection/MenuItemCollection');
 
 var MenuView = Marionette.CollectionView.extend({
   name: 'MenuView',
-
-  childViewEventPrefix: "menuItem",
+  childViewEventPrefix: 'menuItem',
 
   getChildView: function (item) {
     var type = item.get('type');

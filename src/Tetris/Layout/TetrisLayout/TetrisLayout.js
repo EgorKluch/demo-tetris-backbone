@@ -6,6 +6,7 @@ var Marionette = require('backbone.marionette');
 
 var MainMenuLayout = require('../MainMenuLayout/MainMenuLayout');
 var SettingsLayout = require('../SettingsLayout/SettingsLayout');
+var GameLayout = require('../GameLayout/GameLayout');
 
 var tetrisLayoutTemplate = require('./tpl/TetrisLayout.twig');
 
@@ -36,9 +37,12 @@ var TetrisLayout = Marionette.LayoutView.extend({
 
   getScreenLayout: function () {
     var screen = this.model.get('screen');
-    if (screen == 'menu') return MainMenuLayout;
-    if (screen == 'settings') return SettingsLayout;
-    return Marionette.ItemView;
+    switch (screen) {
+      case 'menu': return MainMenuLayout;
+      case 'settings': return SettingsLayout;
+      case 'game': return GameLayout;
+    }
+    throw new Error('Screen "' + screen + '" not found!');
   }
 });
 

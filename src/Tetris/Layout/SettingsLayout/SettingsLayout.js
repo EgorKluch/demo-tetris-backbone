@@ -6,11 +6,7 @@ var SettingsView = require('./View/SettingsView');
 var SettingsLayout = MainMenuLayout.extend({
   name: 'SettingsLayout',
 
-  addScreenClass: function () {
-    this.$el.addClass('tetrisScreen-settings');
-  },
-
-  _showMenu: function () {
+  showMenu: function () {
     var settingsView = new SettingsView({
       model: this.model
     });
