@@ -52,6 +52,8 @@ var GameView = Marionette.CollectionView.extend({
       case 'left': return figure.left();
       case 'right': return figure.right();
       case 'down': return figure.speedUp();
+      case 'up': return figure.turn();
+      case 'p': return figure.togglePause();
     }
   },
 });
