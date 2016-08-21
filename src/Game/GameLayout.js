@@ -5,7 +5,7 @@ require('./css/GameLayout.css');
 var Marionette = require('backbone.marionette');
 
 var GameView = require('./View/GameView');
-var GameModel = require('./Model/GameModel');
+var Game = require('./Model/GameModel');
 
 var gameLayoutTemplate = require('./tpl/GameLayout.twig');
 
@@ -24,7 +24,7 @@ var GameLayout = Marionette.LayoutView.extend({
 
   startGame: function () {
     var gameView = new GameView({
-      model: new GameModel({
+      model: new Game({
         useSpecials: this.model.get('useSpecials')
       })
     });

@@ -3,8 +3,8 @@
 var _ = require('underscore');
 var Backbone = require('backbone');
 
-var GameSquareCollection = require('../Collection/GameSquareCollection');
-var GameFigureCollection = require('./../Collection/GameFigureCollection');
+var SquareCollection = require('../Collection/GameSquareCollection');
+var Figure = require('../Model/GameFigureModel');
 
 var GameModel = Backbone.Model.extend({
   name: 'GameModel',
@@ -13,8 +13,8 @@ var GameModel = Backbone.Model.extend({
   },
 
   initialize: function () {
-    this.set('map', new GameSquareCollection());
-    this.set('figure', new GameFigureCollection());
+    this.set('map', new SquareCollection());
+    this.set('figure', new Figure());
   },
 
   getAt: function (x, y) {

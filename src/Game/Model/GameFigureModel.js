@@ -1,19 +1,20 @@
 'use strict';
 
 var _ = require('underscore');
+var Backbone = require('backbone');
+var SquareCollection = require('../Collection/GameSquareCollection');
 
-var GameSquareCollection = require('./GameSquareCollection');
-
-var GameFigureCollection = GameSquareCollection.extend({
-  name: 'GameFigureCollection',
+var GameFigure = Backbone.Model.extend({
+  name: 'GameFigureModel',
 
   initialize: function () {
+    this.set('map', new SquareCollection());
     this.timer = setInterval(this.step.bind(this), 1000);
   },
 
   step: function () {
-    if (!this.length) {
-      return this.createFigure();
+    if (!this.get('map').length) {
+      this.createFigure();
     }
   },
 
@@ -32,7 +33,11 @@ var GameFigureCollection = GameSquareCollection.extend({
         color: this._color
       }
     }.bind(this));
-    this.add(squares);
+    this.get('map').add(squares);
+  },
+
+  removeFigure: function () {
+    this.get('map').reset();
   },
 
   destroy: function () {
@@ -40,4 +45,4 @@ var GameFigureCollection = GameSquareCollection.extend({
   }
 });
 
-module.exports = GameFigureCollection;
+module.exports = GameFigure;
