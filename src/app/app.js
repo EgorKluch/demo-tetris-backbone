@@ -5,8 +5,8 @@ require('./css/reset.css');
 var $ = require('jquery');
 var Marionette = require('backbone.marionette');
 
-var TetrisLayout = require('../Tetris/Layout/TetrisLayout/TetrisLayout');
-var TetrisGameModel = require('../Tetris/Model/TetrisModel');
+var TetrisLayout = require('../Tetris/TetrisLayout');
+var Tetris = require('../Tetris/Model/TetrisModel');
 
 var Application = Marionette.Application.extend({
   initialize: function () {
@@ -19,7 +19,7 @@ var Application = Marionette.Application.extend({
       });
 
       var tetrisLayout = new TetrisLayout({
-        model: new TetrisGameModel()
+        model: new Tetris()
       });
       app.getRegion('app').show(tetrisLayout);
     });

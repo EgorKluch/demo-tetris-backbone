@@ -1,6 +1,6 @@
 'use strict';
 
-var MainMenuLayout = require('../MainMenuLayout/MainMenuLayout');
+var MainMenuLayout = require('../MainMenu/MainMenuLayout');
 var SettingsView = require('./View/SettingsView');
 
 var SettingsLayout = MainMenuLayout.extend({

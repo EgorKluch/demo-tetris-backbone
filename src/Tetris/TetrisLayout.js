@@ -4,9 +4,9 @@ require('./css/TetrisLayout.css');
 
 var Marionette = require('backbone.marionette');
 
-var MainMenuLayout = require('../MainMenuLayout/MainMenuLayout');
-var SettingsLayout = require('../SettingsLayout/SettingsLayout');
-var GameLayout = require('../GameLayout/GameLayout');
+var MainMenuLayout = require('../MainMenu/MainMenuLayout');
+var SettingsLayout = require('../Settings/SettingsLayout');
+var GameLayout = require('../Game/GameLayout');
 
 var tetrisLayoutTemplate = require('./tpl/TetrisLayout.twig');
 

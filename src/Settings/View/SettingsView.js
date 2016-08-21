@@ -2,8 +2,8 @@
 
 require('../css/SettingsView.css');
 
-var MainMenuView = require('../../MainMenuLayout/View/MainMenuView');
-var MenuItemCollection = require('../../../Component/Menu/Collection/MenuItemCollection');
+var MainMenuView = require('../../MainMenu/View/MainMenuView');
+var MenuItemCollection = require('../../Component/Menu/Collection/MenuItemCollection');
 
 var SettingsView = MainMenuView.extend({
   name: 'SettingsView',

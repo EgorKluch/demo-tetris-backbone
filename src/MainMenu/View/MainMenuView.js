@@ -1,7 +1,7 @@
 'use strict';
 
-var MenuView = require('../../../Component/Menu/MenuView');
-var MenuItemCollection = require('../../../Component/Menu/Collection/MenuItemCollection');
+var MenuView = require('../../Component/Menu/MenuView');
+var MenuItemCollection = require('../../Component/Menu/Collection/MenuItemCollection');
 
 var MainMenuView = MenuView.extend({
   name: 'MainMenuView',
