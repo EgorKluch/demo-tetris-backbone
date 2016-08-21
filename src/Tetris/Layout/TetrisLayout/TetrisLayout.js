@@ -12,7 +12,6 @@ var tetrisLayoutTemplate = require('./tpl/TetrisLayout.twig');
 
 var TetrisLayout = Marionette.LayoutView.extend({
   name: 'TetrisLayout',
-
   template: tetrisLayoutTemplate,
 
   regions: {
@@ -40,7 +39,7 @@ var TetrisLayout = Marionette.LayoutView.extend({
     switch (screen) {
       case 'menu': return MainMenuLayout;
       case 'settings': return SettingsLayout;
-      case 'game': return GameLayout;
+      case 'game': return GameLayout
     }
     throw new Error('Screen "' + screen + '" not found!');
   }

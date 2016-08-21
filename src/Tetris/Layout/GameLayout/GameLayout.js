@@ -11,7 +11,7 @@ var gameLayoutTemplate = require('./tpl/GameLayout.twig');
 
 var GameLayout = Marionette.LayoutView.extend({
   name: 'GameLayout',
-
+  className: 'tetrisScreen-area',
   template: gameLayoutTemplate,
 
   regions: {

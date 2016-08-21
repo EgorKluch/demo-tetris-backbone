@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('underscore');
+var Backbone = require('backbone');
 var Marionette = require('backbone.marionette');
 
 var GameSquareView = require('./GameSquareView');
@@ -12,67 +14,23 @@ var GameView = Marionette.CollectionView.extend({
   childView: GameSquareView,
 
   initialize: function () {
-    this.collection = new GameSquareCollection([{
-      x: 0,
-      y: 0
-    }, {
-      x: 1,
-      y: 1
-    }, {
-      x: 2,
-      y: 2
-    }, {
-      x: 3,
-      y: 3
-    }, {
-      x: 4,
-      y: 4
-    }, {
-      x: 5,
-      y: 5
-    }, {
-      x: 6,
-      y: 6
-    }, {
-      x: 7,
-      y: 7
-    }, {
-      x: 8,
-      y: 8
-    }, {
-      x: 9,
-      y: 9
-    }, {
-      x: 10,
-      y: 8
-    }, {
-      x: 11,
-      y: 7
-    }, {
-      x: 12,
-      y: 6
-    }, {
-      x: 13,
-      y: 5
-    }, {
-      x: 14,
-      y: 4
-    }, {
-      x: 15,
-      y: 3
-    }, {
-      x: 16,
-      y: 2
-    }, {
-      x: 17,
-      y: 1
-    }, {
-      x: 18,
-      y: 0
-    }, {
-      x: 19,
-      y: 1
-    }]);
+    this.collection =  new Backbone.Collection();
+
+    this.model.get('figure').on('update', function () {
+      this.render();
+    }.bind(this));
+    this.model.get('map').on('update', function () {
+      this.render();
+    }.bind(this));
+  },
+
+  render: function () {
+    var models = this.model.get('map').toJSON();
+    models = models.concat(_.filter(this.model.get('figure').toJSON(), function (square) {
+      return square.x >= 0;
+    }));
+    this.collection.reset(models, { silent: true });
+    Marionette.CollectionView.prototype.render.apply(this, arguments);
   }
 });
 
