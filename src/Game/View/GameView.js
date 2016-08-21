@@ -1,8 +1,10 @@
 'use strict';
 
+var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
 var Marionette = require('backbone.marionette');
+var keycomb = require('keycomb');
 
 var SquareView = require('./GameSquareView');
 
@@ -15,12 +17,14 @@ var GameView = Marionette.CollectionView.extend({
   initialize: function () {
     this.collection =  new Backbone.Collection();
 
-    this.model.get('figure').get('map').on('update', function () {
+    this.model.get('figure').on('change', function () {
       this.render();
     }.bind(this));
     this.model.get('map').on('update', function () {
       this.render();
     }.bind(this));
+
+    $(document).on('keydown.' + this.cid, this.onKeyDown.bind(this))
   },
 
   render: function () {
@@ -34,7 +38,22 @@ var GameView = Marionette.CollectionView.extend({
 
     this.collection.reset(models, { silent: true });
     Marionette.CollectionView.prototype.render.apply(this, arguments);
-  }
+  },
+
+  destroy: function () {
+    this.remove();
+    app.$document.off('keydown.' + this.cid);
+  },
+
+  onKeyDown: function (e) {
+    var pressedKeys = _.uniq(keycomb(e)).join('+');
+    var figure = this.model.get('figure');
+    switch (pressedKeys) {
+      case 'left': return figure.left();
+      case 'right': return figure.right();
+      case 'down': return figure.speedUp();
+    }
+  },
 });
 
 module.exports = GameView;

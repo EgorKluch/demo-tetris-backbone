@@ -9,35 +9,77 @@ var GameFigure = Backbone.Model.extend({
 
   initialize: function () {
     this.set('map', new SquareCollection());
-    this.timer = setInterval(this.step.bind(this), 1000);
+    this.step();
   },
 
   step: function () {
     if (!this.get('map').length) {
       this.createFigure();
+      return;
     }
+
+    var x = this.get('x');
+    this.set('x', x + 1);
+
+    if (x >= 18) {
+      this.createFigure();
+
+    }
+
+    this.updateMap();
+  },
+
+  left: function () {
+    if (this.get('blockMoving')) return;
+    var y = this.get('y');
+    if (y <= 0) return;
+    this.set('y', y - 1);
+    this.updateMap();
+  },
+
+  right: function () {
+    if (this.get('blockMoving')) return;
+    var y = this.get('y');
+    if (y >= 7) return;
+    this.set('y', y + 1);
+    this.updateMap();
+  },
+
+  setInterval: function (interval) {
+    clearInterval(this.timer);
+    this.timer = setInterval(this.step.bind(this), interval);
   },
 
   createFigure: function () {
-    this._source = [
+    this.setInterval(500);
+    this.set('source', [
       { x: 0, y: 0 },
       { x: 0, y: 1 },
       { x: 1, y: 1 },
       { x: 1, y: 2 }
-    ];
-    this._color = '#369';
-    var squares = _.map(this._source, function (source) {
-      return {
-        x: source.x - 1,
-        y: source.y + 3,
-        color: this._color
-      }
-    }.bind(this));
-    this.get('map').add(squares);
+    ]);
+    this.set('x', 0);
+    this.set('y', 3);
+    this.set('color', '#369');
+    this.set('blockMoving', false);
+    this.updateMap();
   },
 
-  removeFigure: function () {
-    this.get('map').reset();
+  speedUp: function () {
+    this.setInterval(30);
+    this.set('blockMoving', true);
+  },
+
+  updateMap: function () {
+    var squares = _.map(this.get('source'), function (source) {
+      return {
+        x: source.x + this.get('x'),
+        y: source.y + this.get('y'),
+        color: this.get('color')
+      }
+    }.bind(this));
+    this.get('map').reset(squares);
+    this.trigger('change');
   },
 
   destroy: function () {

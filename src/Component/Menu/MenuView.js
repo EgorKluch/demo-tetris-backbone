@@ -31,6 +31,11 @@ var MenuView = Marionette.CollectionView.extend({
     this.initKeyDownHandler();
   },
 
+  destroy: function () {
+    this.remove();
+    app.$document.off('keydown.' + this.cid);
+  },
+
   initMenuItems: function () {
     this.collection = new MenuItemCollection([])
   },
@@ -68,13 +73,8 @@ var MenuView = Marionette.CollectionView.extend({
     this.render();
   },
 
-  destroy: function () {
-    this.remove();
-    app.$document.off('keydown.tetrisMenuItem.select');
-  },
-
   initKeyDownHandler: function () {
-    app.$document.on('keydown.tetrisMenuItem.select', function (e) {
+    app.$document.on('keydown.' + this.cid, function (e) {
       var pressedKeys = _.uniq(keycomb(e)).join('+');
       switch (pressedKeys) {
         case 'up':
